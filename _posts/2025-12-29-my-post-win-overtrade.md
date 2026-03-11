@@ -14,7 +14,7 @@ toc: true
 toc_label: "Contents"
 toc_sticky: true
 visible: true
-permalink: /post-win-overtrade/
+permalink: /my-post-win-overtrade/
 ---
 
 ## 🎰 The Pattern
