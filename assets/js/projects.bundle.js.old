@@ -6,8 +6,7 @@ const projects = [
     {name: "hyperfotopixelicious", image: "/assets/projects/hyperfotopixelicious.png", description: "Imaging & VFX experiments, tools, and pipelines.", url: "#", color: "#F39C12"},
     {name: "newtabfirefoxylicious", image: "/assets/projects/newtabfirefoxylicious.jpg", description: "Custom new‑tab experiments for Firefox.", url: "https://singhaidotnish.github.io/newtabfirefoxylicious/", color: "#E67E22"},
     {name: "dm-mindmap", image: "/assets/projects/solar-system.jpg", description: "3D mindmap visualization tool", url: "#", color: "#1ABC9C"},
-    {name: "TubeSidecarificity", image: "/assets/projects/tubesidecarificity.png", description: "YouTube sidecar tools: local ffmpeg, metadata, MP3.", url: "#", color: "#34495E"},
-    {name: "mymenu-yt", image: "/assets/projects/mymenu-yt.png", description: "Galaxy-themed radial menu in React + Three.js. Circular pie-menu with 2D/3D toggle — YouTube, AI, Trading & Utilities.", url: "/mymenu-yt/", color: "#ffaa00"}
+    {name: "TubeSidecarificity", image: "/assets/projects/tubesidecarificity.png", description: "YouTube sidecar tools: local ffmpeg, metadata, MP3.", url: "#", color: "#34495E"}
 ];
 
 let currentIndex = 0;
