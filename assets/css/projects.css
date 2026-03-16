@@ -68,7 +68,7 @@ aside {
 /* 3D Carousel Structure */
 .stage-container {
     position: relative;
-    height: 450px;
+    height: 420px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,13 +85,13 @@ aside {
 
 .card-wrapper {
     position: absolute;
-    width: 280px;
-    height: 380px;
+    width: 260px;
+    height: 340px;
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     left: 50%;
     top: 50%;
-    margin-left: -140px;
-    margin-top: -190px;
+    margin-left: -130px;
+    margin-top: -170px;
 }
 
 /* Project Card Design */
@@ -115,7 +115,7 @@ aside {
 /* Project Image */
 .project-image {
     position: relative;
-    height: 200px;
+    height: 180px;
     overflow: hidden;
     background: #f8f9fa;
 }
@@ -165,9 +165,9 @@ aside {
 
 /* Project Info */
 .project-info {
-    padding: 1.5rem;
+    padding: 1.2rem;
     background: #f8f9fa;
-    height: 180px;
+    height: 160px;
     display: flex;
     flex-direction: column;
 }

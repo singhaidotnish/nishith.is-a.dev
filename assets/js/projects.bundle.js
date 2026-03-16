@@ -80,15 +80,15 @@ function createDots() {
 function getCardStyle(index) {
     const position = (index - currentIndex + projects.length) % projects.length;
     const angle = (360 / projects.length) * position;
-    const x = 450 * Math.sin(angle * Math.PI / 180);
-    const z = 450 * Math.cos(angle * Math.PI / 180) - 450;
+    const x = 380 * Math.sin(angle * Math.PI / 180);
+    const z = 380 * Math.cos(angle * Math.PI / 180) - 380;
     
     let scale = 1;
     let opacity = 1;
     let zIndex = 0;
     
     if (position === 0) { // Center card
-        scale = 1.15;
+        scale = 1.1;
         opacity = 1;
         zIndex = 10;
     } else if (position === 1 || position === projects.length - 1) { // Adjacent cards
