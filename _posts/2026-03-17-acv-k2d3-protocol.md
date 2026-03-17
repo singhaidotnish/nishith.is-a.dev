@@ -1,3 +1,4 @@
+--
 title: "ACV Protocol: Why I'm Waiting 2 Months Before Starting"
 excerpt: "Apple Cider Vinegar is powerful — but the prep matters. Here's my personal K2+D3 loading protocol before I touch ACV."
 date: 2026-03-17
@@ -14,6 +15,7 @@ toc_label: "Contents"
 toc_sticky: true
 visible: true
 permalink: /acv-k2d3-protocol/
+--
 🧪 The Setup
 ACV (Apple Cider Vinegar) gets hyped a lot. But most people skip the context — it's an acid, and if your gut, teeth, or mineral balance isn't ready, it can do more harm than good.
 So I'm doing this properly.
