@@ -19,5 +19,4 @@ header:
   teaser: /assets/images/pen-drawing.jpg # Optional
 ---
 
-#### Add scanned pdf here as soon as you read this. its now or never
 <iframe src="/assets/drawings.pdf" width="100%" height="600px" style="border:none;"></iframe>
