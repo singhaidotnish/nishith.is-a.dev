@@ -179,3 +179,7 @@ include:
   - "*.md"
   - "*.html"
   - google20a01567g9adf344.html
+
+markdown: kramdown
+kramdown:
+  input: GFM
