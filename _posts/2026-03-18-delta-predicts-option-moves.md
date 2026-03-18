@@ -19,7 +19,7 @@ header:
 teaser: /assets/images/delta-option-moves.jpg
 ---
 
-The Morning Screen
+### The Morning Screen
 Every trading morning, my Tasker automation fires a notification.
 Today it said:
 🎯 NIFTY GAP: 172.35
