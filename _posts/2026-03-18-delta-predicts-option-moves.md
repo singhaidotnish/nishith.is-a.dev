@@ -27,7 +27,7 @@ Expected Option Move (0.5 Delta): 👉 86.175 points
 Verify: Did the option price move this much?
 That's it. Three lines. But there's a whole concept packed inside.
 
-#### What's Actually Happening
+### What's Actually Happening
 
 Step 1 — The Gap
 Nifty didn't open where it closed yesterday. It jumped 172.35 points at the open.
