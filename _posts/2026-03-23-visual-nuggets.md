@@ -1,6 +1,6 @@
 ---
-title: "Visual Nuggets: Images Worth Saving"
-excerpt: "A growing gallery of interesting images, infographics, and ideas — collected as I scroll through life."
+title: "Visual Nuggets: Ryan Natural Remedies"
+excerpt: "A growing gallery of interesting health excerpts, infographics, and ideas — collected as I scroll through life."
 date: 2025-12-30
 layout: single
 author_profile: true
