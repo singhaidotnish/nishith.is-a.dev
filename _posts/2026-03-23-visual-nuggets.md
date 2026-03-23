@@ -15,6 +15,7 @@ visible: true
 permalink: /visual-nuggets/
 ---
 
+
 �
 Interesting images and infographics I've saved — things that made me think, learn, or just nod.
 Tap any card to expand. 
@@ -27,7 +28,9 @@ Tap any card to expand.
 �
 ￼ 
 
-🖼️ Image not uploaded yet 
+🖼️
+
+IMAGE PENDING 
 
 Health 
 
@@ -35,6 +38,16 @@ Pumpkin seeds → phytoestrogens → hormone balance during menopause.
 
 
 �
+
+�
++
+
+NEXT NUGGET 
+
+Soon 
+
+More coming...
+
 
 �
 
