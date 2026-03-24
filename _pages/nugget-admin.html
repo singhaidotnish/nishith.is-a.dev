@@ -248,15 +248,12 @@
   <div class="tagline">Visual Nuggets Manager</div>
 
   <div class="field">
-    <label>Password</label>
-    <input type="password" id="pwd-input" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')doLogin()">
-  </div>
-  <div class="field">
     <label>GitHub PAT</label>
-    <input type="password" id="pat-input" placeholder="github_pat_...">
+    <input type="password" id="pat-input" placeholder="github_pat_..." onkeydown="if(event.key==='Enter')doLogin()">
   </div>
+  <p style="font-size:0.75rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:1rem;line-height:1.6;">Your PAT is the only key. Never stored in the repo.</p>
   <button class="btn" onclick="doLogin()">Unlock →</button>
-  <div id="login-err" style="color:var(--error);font-size:0.8rem;margin-top:0.75rem;font-family:'JetBrains Mono',monospace;display:none;">Wrong password.</div>
+  <div id="login-err" style="color:var(--error);font-size:0.8rem;margin-top:0.75rem;font-family:'JetBrains Mono',monospace;display:none;">Invalid PAT — must start with github_pat_ or ghp_</div>
 </div>
 
 <!-- ── ADMIN PANEL ── -->
@@ -321,7 +318,7 @@ const REPO_OWNER = 'singhaidotnish';
 const REPO_NAME  = 'nishith.is-a.dev';   // your actual repo name
 const MD_PATH    = '_posts/2026-03-23-visual-nuggets.md';
 const IMG_FOLDER = 'assets/images/nuggets';
-const ADMIN_PASS = 'nuggets2026';         // change this password!
+
 // ────────────────────────────────────────────────────────────
 
 let PAT = '';
@@ -330,9 +327,8 @@ let selectedB64 = null;
 
 // ── Auth ──
 function doLogin() {
-  const pwd = document.getElementById('pwd-input').value;
   PAT = document.getElementById('pat-input').value.trim();
-  if (pwd !== ADMIN_PASS || !PAT) {
+  if (!PAT || (!PAT.startsWith('github_pat_') && !PAT.startsWith('ghp_'))) {
     document.getElementById('login-err').style.display = 'block';
     return;
   }
