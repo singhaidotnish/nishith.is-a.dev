@@ -417,7 +417,7 @@ async function ghGet(path) {
 }
 
 async function ghPut(path, content, sha, message) {
-  const body = { message, content: btoa(unescape(encodeURIComponent(content))), branch: 'main' };
+  const body = { message, content: btoa(unescape(encodeURIComponent(content))), branch: 'master' };
   if (sha) body.sha = sha;
   const r = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`, {
     method: 'PUT',
@@ -429,7 +429,7 @@ async function ghPut(path, content, sha, message) {
 }
 
 async function ghPutBinary(path, b64, sha, message) {
-  const body = { message, content: b64, branch: 'main' };
+  const body = { message, content: b64, branch: 'master' };
   if (sha) body.sha = sha;
   const r = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`, {
     method: 'PUT',
