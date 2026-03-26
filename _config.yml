@@ -183,3 +183,5 @@ include:
 markdown: kramdown
 kramdown:
   input: GFM
+
+nugget_admin_pass_hash: "PLACEHOLDER"
