@@ -1,0 +1,72 @@
+---
+title: "Visual Nuggets: Images Worth Saving"
+excerpt: "A growing gallery of interesting images, infographics, and ideas — collected as I scroll through life."
+date: 2026-03-23
+layout: single
+author_profile: true
+read_time: false
+comments: true
+share: true
+related: true
+categories: [visual, curated]
+tags: [gallery, health, learning, infographics]
+toc: false
+visible: true
+permalink: /visual-nuggets/
+---
+
+<p style="color:#aaa; border-left:3px solid #f0c040; padding-left:1rem; font-size:0.92rem; line-height:1.6; margin-bottom:1.5rem;">
+  Interesting images and infographics I've saved — things that made me think, learn, or just nod.<br>
+  <em>Tap any card to expand.</em>
+</p>
+
+<style>
+.vn-grid { columns:1; column-gap:1rem; }
+@media (min-width:500px)  { .vn-grid { columns:2; } }
+@media (min-width:900px)  { .vn-grid { columns:3; } }
+</style>
+
+<div class="vn-grid">
+
+  <div onclick="openLB('/assets/images/nuggets/pumpkin-seeds-menopause.png','Pumpkin seeds contain phytoestrogens that help balance hormones during menopause.')" style="break-inside:avoid; margin-bottom:1rem; border:1px solid #2a2a2a; border-radius:10px; overflow:hidden; cursor:pointer; background:#1c1c1c;">
+    <img src="/assets/images/nuggets/pumpkin-seeds-menopause.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="width:100%;display:block;" alt="Pumpkin Seeds">
+    <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:180px;background:#181818;border-bottom:2px dashed #333;gap:0.5rem;">
+      <div style="width:48px;height:48px;border:2px dashed #444;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;">🖼️</div>
+      <span style="color:#555;font-size:0.75rem;letter-spacing:0.05em;">IMAGE PENDING</span>
+    </div>
+    <div style="padding:0.6rem 0.9rem 0.8rem;">
+      <span style="display:inline-block;font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:rgba(240,192,64,0.12);color:#f0c040;border:1px solid rgba(240,192,64,0.3);border-radius:4px;padding:2px 7px;margin-bottom:0.35rem;">Health</span>
+      <p style="font-size:0.8rem;color:#bbb;margin:0;line-height:1.45;">Pumpkin seeds → phytoestrogens → hormone balance during menopause.</p>
+    </div>
+  </div>
+
+  <div style="break-inside:avoid; margin-bottom:1rem; border:1px dashed #2a2a2a; border-radius:10px; overflow:hidden; background:#161616;">
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:180px;gap:0.5rem;">
+      <div style="width:48px;height:48px;border:2px dashed #333;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#444;">+</div>
+      <span style="color:#444;font-size:0.75rem;letter-spacing:0.05em;">NEXT NUGGET</span>
+    </div>
+    <div style="padding:0.6rem 0.9rem 0.8rem;">
+      <span style="display:inline-block;font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:#1e1e1e;color:#444;border:1px solid #2a2a2a;border-radius:4px;padding:2px 7px;margin-bottom:0.35rem;">Soon</span>
+      <p style="font-size:0.8rem;color:#444;margin:0;line-height:1.45;">More coming...</p>
+    </div>
+  </div>
+
+</div>
+
+<div id="lb" onclick="if(event.target===this)closeLB()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;flex-direction:column;padding:1.5rem;">
+  <button onclick="closeLB()" style="position:absolute;top:1rem;right:1.5rem;font-size:2rem;color:#fff;background:none;border:none;cursor:pointer;opacity:0.6;">✕</button>
+  <img id="lb-img" src="" style="max-width:88vw;max-height:78vh;border-radius:10px;" alt="">
+  <p id="lb-cap" style="color:#ccc;font-size:0.83rem;text-align:center;max-width:500px;margin-top:1rem;line-height:1.5;"></p>
+</div>
+
+<script>
+function openLB(src,cap){
+  var lb=document.getElementById('lb');
+  document.getElementById('lb-img').src=src;
+  document.getElementById('lb-cap').textContent=cap;
+  lb.style.display='flex';
+}
+function closeLB(){
+  document.getElementById('lb').style.display='none';
+}
+</script>
