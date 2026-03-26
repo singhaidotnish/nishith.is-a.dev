@@ -1,0 +1,297 @@
+---
+layout: none
+permalink: /nugget-admin/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nugget Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0e0e0f; --surface:#161618; --border:#242428;
+    --accent:#f0c040; --text:#e0e0e0; --muted:#666;
+    --success:#4ade80; --error:#f87171; --radius:10px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1.5rem;}
+  #login-screen{width:100%;max-width:380px;text-align:center;}
+  .logo{font-size:2rem;font-weight:800;letter-spacing:-0.03em;color:var(--accent);margin-bottom:0.25rem;}
+  .logo span{color:var(--text);}
+  .tagline{font-size:0.78rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:2.5rem;}
+  .field{margin-bottom:1rem;text-align:left;}
+  .field label{display:block;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem;font-family:'JetBrains Mono',monospace;}
+  .field input,.field select,.field textarea{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:0.75rem 1rem;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:0.85rem;outline:none;transition:border-color 0.2s;}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);}
+  .field textarea{resize:vertical;min-height:70px;}
+  .btn{width:100%;padding:0.85rem;background:var(--accent);color:#0e0e0f;border:none;border-radius:var(--radius);font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;transition:opacity 0.2s,transform 0.15s;margin-top:0.5rem;}
+  .btn:hover{opacity:0.88;transform:translateY(-1px);}
+  .btn:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+  #admin-screen{display:none;width:100%;max-width:520px;}
+  .panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;}
+  .panel-title{font-size:1.1rem;font-weight:800;}
+  .panel-title span{color:var(--accent);}
+  .logout-btn{font-size:0.72rem;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'JetBrains Mono',monospace;text-transform:uppercase;}
+  .logout-btn:hover{color:var(--error);}
+  .dropzone{border:2px dashed var(--border);border-radius:var(--radius);padding:2.5rem 1rem;text-align:center;cursor:pointer;transition:border-color 0.2s,background 0.2s;margin-bottom:1.25rem;position:relative;}
+  .dropzone:hover,.dropzone.drag-over{border-color:var(--accent);background:rgba(240,192,64,0.04);}
+  .dropzone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+  .dropzone-icon{font-size:2.2rem;margin-bottom:0.5rem;}
+  .dropzone-label{font-size:0.85rem;color:var(--muted);}
+  .dropzone-label strong{color:var(--accent);}
+  #preview-wrap{display:none;margin-bottom:1.25rem;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);position:relative;}
+  #preview-img{width:100%;display:block;max-height:220px;object-fit:cover;}
+  .preview-clear{position:absolute;top:0.5rem;right:0.5rem;background:rgba(0,0,0,0.7);border:none;color:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:0.9rem;display:flex;align-items:center;justify-content:center;}
+  #status{display:none;padding:0.75rem 1rem;border-radius:var(--radius);font-size:0.82rem;font-family:'JetBrains Mono',monospace;margin-top:1rem;line-height:1.6;}
+  #status.success{background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);color:var(--success);}
+  #status.error{background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.3);color:var(--error);}
+  #status.loading{background:rgba(240,192,64,0.08);border:1px solid rgba(240,192,64,0.2);color:var(--accent);}
+  .step{font-size:0.72rem;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;margin-bottom:1.5rem;display:flex;gap:1rem;}
+  .step-item{display:flex;align-items:center;gap:0.3rem;}
+  .step-item.active{color:var(--accent);}
+  .step-item.done{color:var(--success);}
+  #login-err{color:var(--error);font-size:0.8rem;margin-top:0.75rem;font-family:'JetBrains Mono',monospace;display:none;}
+  select option{background:#1a1a1a;}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="logo">nugget<span>.</span>admin</div>
+  <div class="tagline">Visual Nuggets Manager</div>
+  <div class="field">
+    <label>Password</label>
+    <input type="password" id="pwd-input" placeholder="Admin password" onkeydown="if(event.key==='Enter')doLogin()">
+  </div>
+  <div class="field">
+    <label>GitHub PAT</label>
+    <input type="password" id="pat-input" placeholder="github_pat_..." onkeydown="if(event.key==='Enter')doLogin()">
+  </div>
+  <p style="font-size:0.75rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:1rem;line-height:1.6;">Both required. Neither stored in the repo.</p>
+  <button class="btn" onclick="doLogin()">Unlock →</button>
+  <div id="login-err"></div>
+</div>
+
+<!-- ADMIN -->
+<div id="admin-screen">
+  <div class="panel-header">
+    <div class="panel-title">nugget<span>.</span>admin</div>
+    <button class="logout-btn" onclick="doLogout()">⏻ logout</button>
+  </div>
+  <div class="step">
+    <div class="step-item active" id="s1">① pick image</div>
+    <div class="step-item" id="s2">② fill details</div>
+    <div class="step-item" id="s3">③ publish</div>
+  </div>
+  <div class="dropzone" id="dropzone">
+    <input type="file" id="file-input" accept="image/*" onchange="onFileSelect(event)">
+    <div class="dropzone-icon">🖼️</div>
+    <div class="dropzone-label">Drop image here or <strong>tap to browse</strong></div>
+  </div>
+  <div id="preview-wrap">
+    <img id="preview-img" src="" alt="preview">
+    <button class="preview-clear" onclick="clearFile()">✕</button>
+  </div>
+  <div class="field">
+    <label>Tag / Category</label>
+    <select id="tag-input">
+      <option>Health</option><option>Finance</option><option>Mind</option>
+      <option>Nature</option><option>Tech</option><option>Food</option>
+      <option>Life</option><option>Other</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>One-liner caption</label>
+    <input type="text" id="caption-input" placeholder="e.g. Pumpkin seeds → hormone balance during menopause.">
+  </div>
+  <div class="field">
+    <label>Lightbox caption (full sentence)</label>
+    <textarea id="lb-caption-input" placeholder="Longer description shown when image is tapped."></textarea>
+  </div>
+  <button class="btn" id="publish-btn" onclick="doPublish()" disabled>Publish to Site ↑</button>
+  <div id="status"></div>
+</div>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────────────
+const REPO_OWNER = 'singhaidotnish';
+const REPO_NAME  = 'nishith.is-a.dev';
+const MD_PATH    = '_posts/2026-03-23-visual-nuggets.html';
+const IMG_FOLDER = 'assets/images/nuggets';
+const PASS_HASH  = '{{ site.nugget_admin_pass_hash }}';
+// ─────────────────────────────────────────────────────────────
+
+let PAT = '';
+let selectedFile = null;
+let selectedB64  = null;
+
+async function doLogin() {
+  const pwd = document.getElementById('pwd-input').value;
+  PAT = document.getElementById('pat-input').value.trim();
+  const err = document.getElementById('login-err');
+
+  if (!PAT || (!PAT.startsWith('github_pat_') && !PAT.startsWith('ghp_'))) {
+    err.textContent = 'Invalid PAT format.'; err.style.display='block'; return;
+  }
+
+  // SHA-256 hash the entered password and compare to baked-in hash
+  const hash = await sha256(pwd);
+  if (hash !== PASS_HASH) {
+    err.textContent = 'Wrong password.'; err.style.display='block'; return;
+  }
+
+  sessionStorage.setItem('vn_pat', PAT);
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('admin-screen').style.display = 'block';
+}
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+function doLogout() { sessionStorage.removeItem('vn_pat'); location.reload(); }
+
+window.onload = function() {
+  const saved = sessionStorage.getItem('vn_pat');
+  if (saved) {
+    PAT = saved;
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-screen').style.display = 'block';
+  }
+  const dz = document.getElementById('dropzone');
+  dz.addEventListener('dragover', e=>{e.preventDefault();dz.classList.add('drag-over');});
+  dz.addEventListener('dragleave', ()=>dz.classList.remove('drag-over'));
+  dz.addEventListener('drop', e=>{e.preventDefault();dz.classList.remove('drag-over');const f=e.dataTransfer.files[0];if(f)handleFile(f);});
+};
+
+function onFileSelect(e){const f=e.target.files[0];if(f)handleFile(f);}
+
+function handleFile(f){
+  selectedFile=f;
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    const dataUrl=ev.target.result;
+    selectedB64=dataUrl.split(',')[1];
+    document.getElementById('preview-img').src=dataUrl;
+    document.getElementById('preview-wrap').style.display='block';
+    document.getElementById('dropzone').style.display='none';
+    document.getElementById('publish-btn').disabled=false;
+    setStep(2);
+  };
+  reader.readAsDataURL(f);
+}
+
+function clearFile(){
+  selectedFile=null;selectedB64=null;
+  document.getElementById('preview-wrap').style.display='none';
+  document.getElementById('dropzone').style.display='block';
+  document.getElementById('file-input').value='';
+  document.getElementById('publish-btn').disabled=true;
+  setStep(1);
+}
+
+function setStep(n){
+  for(let i=1;i<=3;i++){
+    const el=document.getElementById('s'+i);
+    el.className='step-item'+(i<n?' done':i===n?' active':'');
+  }
+}
+
+function showStatus(msg,type){
+  const el=document.getElementById('status');
+  el.textContent=msg;el.className=type;el.style.display='block';
+}
+
+async function ghGet(path){
+  const r=await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`,
+    {headers:{Authorization:`Bearer ${PAT}`,Accept:'application/vnd.github+json'}});
+  if(!r.ok)throw new Error(`GET ${path} → ${r.status}`);
+  return r.json();
+}
+
+async function ghPut(path,content,sha,message){
+  const body={message,content:btoa(unescape(encodeURIComponent(content))),branch:'master'};
+  if(sha)body.sha=sha;
+  const r=await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`,
+    {method:'PUT',headers:{Authorization:`Bearer ${PAT}`,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify(body)});
+  if(!r.ok){const e=await r.json();throw new Error(e.message||r.status);}
+  return r.json();
+}
+
+async function ghPutBinary(path,b64,sha,message){
+  const body={message,content:b64,branch:'master'};
+  if(sha)body.sha=sha;
+  const r=await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`,
+    {method:'PUT',headers:{Authorization:`Bearer ${PAT}`,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify(body)});
+  if(!r.ok){const e=await r.json();throw new Error(e.message||r.status);}
+  return r.json();
+}
+
+function buildCard(imgPath,tag,caption,lbCaption){
+  return `\n  <div onclick="openLB('${imgPath}','${lbCaption.replace(/'/g,"&#39;")}')" style="break-inside:avoid; margin-bottom:1rem; border:1px solid #2a2a2a; border-radius:10px; overflow:hidden; cursor:pointer; background:#1c1c1c;">
+    <img src="${imgPath}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="width:100%;display:block;" alt="${tag}">
+    <div style="display:none;flex-direction:column;align-items:center;justify-content:center;height:180px;background:#181818;border-bottom:2px dashed #333;gap:0.5rem;">
+      <div style="width:48px;height:48px;border:2px dashed #444;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;">🖼️</div>
+      <span style="color:#555;font-size:0.75rem;letter-spacing:0.05em;">IMAGE PENDING</span>
+    </div>
+    <div style="padding:0.6rem 0.9rem 0.8rem;">
+      <span style="display:inline-block;font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:rgba(240,192,64,0.12);color:#f0c040;border:1px solid rgba(240,192,64,0.3);border-radius:4px;padding:2px 7px;margin-bottom:0.35rem;">${tag}</span>
+      <p style="font-size:0.8rem;color:#bbb;margin:0;line-height:1.45;">${caption}</p>
+    </div>
+  </div>`;
+}
+
+async function doPublish(){
+  const tag=document.getElementById('tag-input').value;
+  const caption=document.getElementById('caption-input').value.trim();
+  const lbCaption=document.getElementById('lb-caption-input').value.trim();
+  if(!caption||!lbCaption){showStatus('Please fill in both captions.','error');return;}
+  if(!selectedFile||!selectedB64){showStatus('No image selected.','error');return;}
+
+  document.getElementById('publish-btn').disabled=true;
+  setStep(3);
+
+  const ext=selectedFile.name.split('.').pop().toLowerCase();
+  const slug=caption.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40);
+  const imgFilename=`${slug}.${ext}`;
+  const imgPath=`${IMG_FOLDER}/${imgFilename}`;
+  const imgWebPath=`/assets/images/nuggets/${imgFilename}`;
+
+  try{
+    showStatus('① Uploading image...','loading');
+    let imgSha=null;
+    try{const ex=await ghGet(imgPath);imgSha=ex.sha;}catch(e){}
+    await ghPutBinary(imgPath,selectedB64,imgSha,`Add nugget image: ${imgFilename}`);
+
+    showStatus('② Fetching post file...','loading');
+    const mdFile=await ghGet(MD_PATH);
+    const mdContent=decodeURIComponent(escape(atob(mdFile.content.replace(/\n/g,''))));
+    const mdSha=mdFile.sha;
+
+    showStatus('③ Injecting new card...','loading');
+    const newCard=buildCard(imgWebPath,tag,caption,lbCaption);
+    const PLACEHOLDER=`\n  <div style="break-inside:avoid; margin-bottom:1rem; border:1px dashed`;
+    const updatedMd=mdContent.includes(PLACEHOLDER)
+      ? mdContent.replace(PLACEHOLDER, newCard+PLACEHOLDER)
+      : mdContent.replace('</div>\n\n<div id="lb"', newCard+'\n\n</div>\n\n<div id="lb"');
+
+    showStatus('④ Committing post...','loading');
+    await ghPut(MD_PATH,updatedMd,mdSha,`Add visual nugget: ${tag} — ${caption.slice(0,50)}`);
+
+    showStatus(`✓ Published!\n\n📁 ${imgWebPath}\n\nDeploy triggered automatically.`,'success');
+    clearFile();
+    document.getElementById('caption-input').value='';
+    document.getElementById('lb-caption-input').value='';
+    setStep(1);
+  }catch(err){
+    showStatus(`✗ Error: ${err.message}`,'error');
+    document.getElementById('publish-btn').disabled=false;
+  }
+}
+</script>
+</body>
+</html>
