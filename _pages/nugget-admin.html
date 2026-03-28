@@ -130,7 +130,7 @@ let selectedB64  = null;
 
 async function doLogin() {
   const pwd = document.getElementById('pwd-input').value;
-  PAT = document.getElementById('pat-input').value.trim();
+  PAT = (document.getElementById('pat-input').value.trim() || localStorage.getItem('vn_pat') || '');
   const err = document.getElementById('login-err');
 
   if (!PAT || (!PAT.startsWith('github_pat_') && !PAT.startsWith('ghp_'))) {
@@ -143,7 +143,7 @@ async function doLogin() {
     err.textContent = 'Wrong password.'; err.style.display='block'; return;
   }
 
-  sessionStorage.setItem('vn_pat', PAT);
+  localStorage.setItem('vn_pat', PAT); // persist PAT across sessions
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('admin-screen').style.display = 'block';
 }
@@ -153,14 +153,20 @@ async function sha256(str) {
   return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
 }
 
-function doLogout() { sessionStorage.removeItem('vn_pat'); location.reload(); }
+function doLogout() {
+  // Clear session but keep PAT in localStorage so it auto-fills next time
+  document.getElementById('login-screen').style.display = 'block';
+  document.getElementById('admin-screen').style.display = 'none';
+  document.getElementById('pwd-input').value = '';
+  document.getElementById('pwd-input').focus();
+}
 
 window.onload = function() {
-  const saved = sessionStorage.getItem('vn_pat');
-  if (saved) {
-    PAT = saved;
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('admin-screen').style.display = 'block';
+  // Auto-fill PAT from localStorage — user only needs to type password
+  const savedPat = localStorage.getItem('vn_pat');
+  if (savedPat) {
+    document.getElementById('pat-input').value = savedPat;
+    document.getElementById('pwd-input').focus();
   }
   const dz = document.getElementById('dropzone');
   dz.addEventListener('dragover', e=>{e.preventDefault();dz.classList.add('drag-over');});
@@ -242,7 +248,8 @@ function buildCard(imgPath,tag,caption,lbCaption){
       <span style="display:inline-block;font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:rgba(240,192,64,0.12);color:#f0c040;border:1px solid rgba(240,192,64,0.3);border-radius:4px;padding:2px 7px;margin-bottom:0.35rem;">${tag}</span>
       <p style="font-size:0.8rem;color:#bbb;margin:0;line-height:1.45;">${caption}</p>
     </div>
-  </div>`;
+  </div>
+`;
 }
 
 async function doPublish(){
