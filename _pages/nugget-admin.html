@@ -287,7 +287,24 @@ async function doPublish(){
       : mdContent.replace('</div>\n\n<div id="lb"', newCard+'\n\n</div>\n\n<div id="lb"');
 
     showStatus('④ Committing post...','loading');
-    await ghPut(MD_PATH,updatedMd,mdSha,`Add visual nugget: ${tag} — ${caption.slice(0,50)}`);
+    // Retry once on SHA mismatch (GitHub Actions may have committed between our fetch and push)
+    try {
+      await ghPut(MD_PATH,updatedMd,mdSha,`Add visual nugget: ${tag} — ${caption.slice(0,50)}`);
+    } catch(shaErr) {
+      if(shaErr.message && shaErr.message.includes('does not match')) {
+        showStatus('④ SHA changed (deploy in progress), re-fetching and retrying...','loading');
+        const freshMd   = await ghGet(MD_PATH);
+        const freshContent = decodeURIComponent(escape(atob(freshMd.content.replace(/\n/g,''))));
+        const freshSha  = freshMd.sha;
+        const freshCard = buildCard(imgWebPath,tag,caption,lbCaption);
+        const freshUpdated = freshContent.includes(PLACEHOLDER)
+          ? freshContent.replace(PLACEHOLDER, freshCard+PLACEHOLDER)
+          : freshContent.replace('</div>\n\n<div id="lb"', freshCard+'\n\n</div>\n\n<div id="lb"');
+        await ghPut(MD_PATH,freshUpdated,freshSha,`Add visual nugget: ${tag} — ${caption.slice(0,50)}`);
+      } else {
+        throw shaErr;
+      }
+    }
 
     showStatus(`✓ Published!\n\n📁 ${imgWebPath}\n\nDeploy triggered automatically.`,'success');
     clearFile();
@@ -295,8 +312,25 @@ async function doPublish(){
     document.getElementById('lb-caption-input').value='';
     setStep(1);
   }catch(err){
-    showStatus(`✗ Error: ${err.message}`,'error');
+    const errMsg = err.message || 'Unknown error';
+    showStatus(`✗ Error: ${errMsg}\n\nError copied to clipboard. Tap button below to report via WhatsApp.`,'error');
     document.getElementById('publish-btn').disabled=false;
+
+    // Copy error to clipboard
+    try { await navigator.clipboard.writeText(`nugget-admin error: ${errMsg}`); } catch(e){}
+
+    // Show WhatsApp button
+    const waText = encodeURIComponent(`nugget-admin error:\n${errMsg}`);
+    const waUrl  = `https://wa.me/919029555541?text=${waText}`;
+    const existing = document.getElementById('wa-btn');
+    if(existing) existing.remove();
+    const waBtn = document.createElement('a');
+    waBtn.id = 'wa-btn';
+    waBtn.href = waUrl;
+    waBtn.target = '_blank';
+    waBtn.textContent = '💬 Send error to WhatsApp';
+    waBtn.style.cssText = 'display:block;margin-top:0.75rem;padding:0.75rem;background:#25D366;color:#fff;border-radius:10px;text-align:center;font-weight:700;font-family:Syne,sans-serif;text-decoration:none;font-size:0.9rem;';
+    document.getElementById('status').after(waBtn);
   }
 }
 </script>
