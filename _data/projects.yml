@@ -1,3 +1,16 @@
+- name: "adhd-trading-toolkit"
+  description: "Checklist + AI coaching companion for traders with ADHD. Built after discovering my own ADHD patterns that led to overtrading losses. Prevents impulsive trades through structured pre-market routines, IF-THEN impulse controls, and a real-time Claude-powered psychology mirror."
+  status: "active"
+  image: ""
+  tags:
+    - React
+    - Trading Psychology
+    - ADHD
+    - AI
+  links:
+    github: "https://github.com/singhaidotnish/adhd-trading-toolkit"
+    demo: ""
+    docs: ""
 - name: "build your dream home"
   description: "A jekyll and node based web site with full features to add and reply to comments"
   status: "active"
