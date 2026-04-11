@@ -1,16 +1,17 @@
-- name: "adhd-trading-toolkit"
-  description: "Checklist + AI coaching companion for traders with ADHD. Built after discovering my own ADHD patterns that led to overtrading losses. Prevents impulsive trades through structured pre-market routines, IF-THEN impulse controls, and a real-time Claude-powered psychology mirror."
+- name: "ubiquitous-guide"
+  description: "ADHD Trading Toolkit — checklist + AI coaching companion for traders with ADHD. Built after discovering my own ADHD patterns that led to overtrading losses. Prevents impulsive trades through structured pre-market routines, IF-THEN impulse controls, and a real-time Claude-powered psychology mirror."
   status: "active"
-  image: ""
+  image: "" # Will display 🧠 emoji fallback
   tags:
     - React
     - Trading Psychology
     - ADHD
     - AI
   links:
-    github: "https://github.com/singhaidotnish/adhd-trading-toolkit"
+    github: "https://github.com/singhaidotnish/ubiquitous-guide"
     demo: ""
     docs: ""
+
 - name: "build your dream home"
   description: "A jekyll and node based web site with full features to add and reply to comments"
   status: "active"
