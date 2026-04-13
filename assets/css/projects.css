@@ -252,27 +252,25 @@ aside {
 
 /* ── Hamburger menu ── */
 .proj-menu-btn {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    z-index: 1000;
+    position: fixed !important;
+    top: 1rem !important;
+    right: 1rem !important;
+    z-index: 10000 !important;
     width: 40px;
     height: 40px;
     background: #fff;
     border: 1px solid #eaeaea;
     border-radius: 8px;
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 5px;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     transition: box-shadow 0.2s;
 }
-
-.proj-menu-btn:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.13); }
-
+.proj-menu-btn:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
 .proj-menu-btn span {
     display: block;
     width: 18px;
@@ -281,49 +279,45 @@ aside {
     border-radius: 2px;
     transition: transform 0.25s, opacity 0.25s;
 }
-
 .proj-menu-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .proj-menu-btn.open span:nth-child(2) { opacity: 0; }
 .proj-menu-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 .proj-menu-overlay {
     display: none;
-    position: fixed;
+    position: fixed !important;
     inset: 0;
-    z-index: 998;
+    z-index: 9998 !important;
     background: rgba(0,0,0,0.25);
 }
-
-.proj-menu-overlay.open { display: block; }
+.proj-menu-overlay.open { display: block !important; }
 
 .proj-menu {
-    position: fixed;
-    top: 0;
-    right: -220px;
+    position: fixed !important;
+    top: 0 !important;
+    right: -220px !important;
     width: 200px;
     height: 100vh;
-    z-index: 999;
+    z-index: 9999 !important;
     background: #fff;
     border-left: 1px solid #eaeaea;
-    box-shadow: -4px 0 20px rgba(0,0,0,0.08);
-    display: flex;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+    display: flex !important;
     flex-direction: column;
     padding: 4rem 1.5rem 2rem;
     gap: 0.25rem;
     transition: right 0.3s cubic-bezier(0.4,0,0.2,1);
 }
-
-.proj-menu.open { right: 0; }
-
+.proj-menu.open { right: 0 !important; }
 .proj-menu a {
     font-size: 0.95rem;
-    color: #333;
-    text-decoration: none;
+    color: #333 !important;
+    text-decoration: none !important;
     padding: 0.6rem 0.75rem;
     border-radius: 8px;
     font-weight: 500;
+    display: block;
     transition: background 0.15s, color 0.15s;
 }
-
-.proj-menu a:hover { background: #f4f4f4; color: #111; }
-.proj-menu a.active { color: #0070f3; background: #e8f0fe; }
+.proj-menu a:hover { background: #f4f4f4; color: #111 !important; }
+.proj-menu a.active { color: #0070f3 !important; background: #e8f0fe; }
