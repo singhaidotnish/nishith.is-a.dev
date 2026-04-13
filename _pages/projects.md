@@ -6,20 +6,20 @@ permalink: /projects/
 <link rel="stylesheet" href="/assets/css/projects.css">
 <script src="/assets/js/projects.bundle.js" defer></script>
 
+<!-- Hamburger — outside carousel so fixed positioning works -->
+<div class="proj-menu-btn" id="projMenuBtn" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+</div>
+<div class="proj-menu-overlay" id="projMenuOverlay" onclick="toggleMenu()"></div>
+<nav class="proj-menu" id="projMenu">
+    <a href="/">About Me</a>
+    <a href="/resume/">Résumé</a>
+    <a href="/projects/">Projects</a>
+    <a href="/thought-nuggets/">Thought Nuggets</a>
+</nav>
+
 <div class="carousel-wrapper">
     <div class="carousel-container">
-
-        <!-- Hamburger menu -->
-        <div class="proj-menu-btn" id="projMenuBtn" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
-        </div>
-        <div class="proj-menu-overlay" id="projMenuOverlay" onclick="toggleMenu()"></div>
-        <nav class="proj-menu" id="projMenu">
-            <a href="/">About Me</a>
-            <a href="/resume/">Résumé</a>
-            <a href="/projects/">Projects</a>
-            <a href="/thought-nuggets/">Thought Nuggets</a>
-        </nav>
 
         <div class="carousel-header">
             <h1>Projects Gallery</h1>
@@ -50,7 +50,6 @@ function toggleMenu() {
     document.getElementById('projMenu').classList.toggle('open');
     document.getElementById('projMenuOverlay').classList.toggle('open');
 }
-// Mark active link
 document.querySelectorAll('.proj-menu a').forEach(a => {
     if (a.getAttribute('href') === window.location.pathname) a.classList.add('active');
 });
