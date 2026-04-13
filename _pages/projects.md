@@ -9,6 +9,18 @@ permalink: /projects/
 <div class="carousel-wrapper">
     <div class="carousel-container">
 
+        <!-- Hamburger menu -->
+        <div class="proj-menu-btn" id="projMenuBtn" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="proj-menu-overlay" id="projMenuOverlay" onclick="toggleMenu()"></div>
+        <nav class="proj-menu" id="projMenu">
+            <a href="/">About Me</a>
+            <a href="/resume/">Résumé</a>
+            <a href="/projects/">Projects</a>
+            <a href="/thought-nuggets/">Thought Nuggets</a>
+        </nav>
+
         <div class="carousel-header">
             <h1>Projects Gallery</h1>
             <p>Things I've built</p>
@@ -31,3 +43,15 @@ permalink: /projects/
 
     </div>
 </div>
+
+<script>
+function toggleMenu() {
+    document.getElementById('projMenuBtn').classList.toggle('open');
+    document.getElementById('projMenu').classList.toggle('open');
+    document.getElementById('projMenuOverlay').classList.toggle('open');
+}
+// Mark active link
+document.querySelectorAll('.proj-menu a').forEach(a => {
+    if (a.getAttribute('href') === window.location.pathname) a.classList.add('active');
+});
+</script>
