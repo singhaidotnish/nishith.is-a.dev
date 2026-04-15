@@ -11,7 +11,13 @@ permalink: /nuggets/heart-supplement-stack/
 toc: true
 toc_label: "Quick Nav"
 toc_icon: "heartbeat"
+toc_sticky: false
 ---
+
+<style>
+.notice--tldr { margin-top: 1.5rem !important; clear: both; }
+.toc { margin-bottom: 1.5rem; }
+</style>
 
 > **TL;DR** — D3+K2 and Magnesium Taurate do completely different jobs for your heart. You need both. 90 days minimum to call it consistent.
 
