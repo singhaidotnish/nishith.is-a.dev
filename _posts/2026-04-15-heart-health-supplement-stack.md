@@ -105,4 +105,40 @@ Your heart needs:
 
 ---
 
+## Can You Take a Break After Consistency?
+
+**Yes — but each supplement has different rules.**
+
+| Supplement | Can You Pause? | Safe Break | Condition |
+|---|---|---|---|
+| **D3 + K2** | Yes | **4–6 weeks max** | Only if you get good sun daily (arms/legs, 20 min) |
+| **Magnesium Taurate** | Yes | **2–3 weeks** | Magnesium depletes faster — diet rarely covers it |
+| **B12** | Yes | **4–8 weeks** | Only if you eat meat/eggs/dairy regularly |
+
+---
+
+### The Key Distinction
+
+> Your body **stores** D3+K2 (fat-soluble) but **doesn't store** Magnesium well.
+
+Magnesium is the one to be most careful about pausing.
+
+### When a Break Makes Sense
+
+✅ Bloodwork confirms levels are good  
+✅ Summer — getting actual sun exposure (skin, not through glass/clothes)  
+✅ Diet is solid: dark chocolate, nuts, leafy greens cover some Magnesium
+
+❌ Don't pause "just because" — these are **maintenance** supplements, not cure supplements
+
+### Break Summary
+
+- **Magnesium Taurate** → like brushing teeth. Pause = levels drop in 2–3 weeks
+- **D3 + K2** → more forgiving. 4–6 week summer break is fine if actually outdoors
+- **B12** → most forgiving for breaks
+
+> ☀️ In Navi Mumbai, sun isn't the problem — but **actual skin exposure** is what counts for D3 synthesis.
+
+---
+
 *Personal health log — not medical advice. Consult your doctor before starting any supplement stack.*
