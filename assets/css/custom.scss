@@ -1,0 +1,272 @@
+/* ============================================
+   MINIMAL B&W REDESIGN — custom.scss
+   ============================================ */
+
+/* Hide default theme title (we have our own) */
+.home-minimal .page__title { display: none; }
+
+/* Remove sidebar on home */
+.home-minimal .page { float: none; width: 100%; }
+.home-minimal .sidebar { display: none; }
+
+/* ---- Wrapper ---- */
+.ns-wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* ---- Hero ---- */
+.ns-hero {
+  padding: 6rem 0 4rem;
+}
+
+.ns-eyebrow {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #999;
+  margin: 0 0 1.2rem;
+}
+
+.ns-name {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: #111;
+  margin: 0 0 1.5rem;
+  line-height: 1.1;
+}
+
+.ns-bio {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #444;
+  max-width: 560px;
+  margin: 0 0 2.5rem;
+}
+
+/* ---- CTA Buttons ---- */
+.ns-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ns-btn-primary {
+  background: #111;
+  color: #fff !important;
+  text-decoration: none;
+  padding: 0.7rem 1.6rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  border: 2px solid #111;
+  transition: background 0.15s, color 0.15s;
+
+  &:hover {
+    background: #fff;
+    color: #111 !important;
+  }
+}
+
+.ns-btn-ghost {
+  background: transparent;
+  color: #111 !important;
+  text-decoration: none;
+  padding: 0.7rem 1.6rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  border: 2px solid #ccc;
+  transition: border-color 0.15s;
+
+  &:hover {
+    border-color: #111;
+  }
+}
+
+/* ---- Divider ---- */
+.ns-rule {
+  border: none;
+  border-top: 1px solid #e8e8e8;
+  margin: 3rem 0;
+}
+
+/* ---- Section ---- */
+.ns-section {
+  padding: 1rem 0;
+}
+
+.ns-section-label {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #999;
+  margin: 0 0 2rem;
+  font-weight: 500;
+  border: none;
+
+  &::after { display: none; }
+}
+
+/* ---- 3-col grid ---- */
+.ns-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+/* ---- Cards ---- */
+.ns-card {
+  position: relative;
+  padding-top: 0.5rem;
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    color: #111;
+    margin: 0.3rem 0 0.6rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #555;
+    margin: 0;
+  }
+}
+
+.ns-card-num {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 0.7rem;
+  color: #bbb;
+  letter-spacing: 0.1em;
+  display: block;
+}
+
+/* ---- Connector ---- */
+.ns-connector {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin: 1rem 0 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #111;
+}
+
+.ns-arrow {
+  color: #bbb;
+}
+
+.ns-connector-note {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0;
+  font-style: italic;
+}
+
+/* ---- Project groups ---- */
+.ns-project-group {
+  margin-bottom: 2.5rem;
+}
+
+.ns-tag {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #999;
+  margin: 0 0 0.8rem;
+  font-weight: 500;
+}
+
+/* ---- Lists ---- */
+.ns-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    font-size: 0.93rem;
+    line-height: 1.7;
+    color: #444;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #f0f0f0;
+
+    &:last-child { border-bottom: none; }
+
+    strong { color: #111; font-weight: 600; }
+
+    a {
+      color: #111;
+      text-underline-offset: 3px;
+    }
+  }
+}
+
+/* ---- About ---- */
+.ns-about-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #444;
+  max-width: 660px;
+  margin-bottom: 1.2rem;
+}
+
+.ns-quote {
+  border-left: 2px solid #111;
+  padding-left: 1.2rem;
+  margin: 2rem 0 0;
+  font-size: 1rem;
+  font-style: italic;
+  color: #555;
+}
+
+/* ---- Contact ---- */
+.ns-contact-text {
+  font-size: 1.05rem;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.ns-contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+
+  a {
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    font-size: 0.95rem;
+    color: #111 !important;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+
+    &:hover { color: #555 !important; }
+  }
+}
+
+/* ---- Footer ---- */
+.ns-footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e8e8e8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 0.8rem;
+  color: #aaa;
+  text-align: center;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+  .ns-hero { padding: 4rem 0 3rem; }
+  .ns-grid-3 { grid-template-columns: 1fr; }
+}
